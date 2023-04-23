@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Web1:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Web1_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Web1/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Web1" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="tomcat-api" />
+          <element id="library" level="project" name="mysql-connector-java-8.0.28" />
+          <element id="library" level="project" name="thymeleaf_lib" />
+          <element id="library" level="project" name="javax.mail" />
+          <element id="library" level="project" name="commons-email-1.5" />
+        </element>
+      </element>
+      <element id="library" level="project" name="tomcat-api" />
+      <element id="library" level="project" name="commons-email-1.5" />
+    </root>
+  </artifact>
+</component>
