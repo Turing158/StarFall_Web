@@ -1,0 +1,3 @@
+上传时，要把js/ppt.js里
+change_img()方法里的
+url改成img/top/......
