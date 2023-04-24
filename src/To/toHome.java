@@ -1,6 +1,6 @@
 package To;
 
-import SQL.Connection_SQL;
+import Util.Connection_SQL;
 import Util.ViewBaseServlet;
 import main.Comment.getComment;
 import org.thymeleaf.util.StringUtils;

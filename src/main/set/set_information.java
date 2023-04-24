@@ -1,9 +1,8 @@
 package main.set;
 
-import SQL.Connection_SQL;
+import Util.Connection_SQL;
 import Util.ViewBaseServlet;
 
-import javax.jws.Oneway;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

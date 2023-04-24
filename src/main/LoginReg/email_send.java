@@ -1,6 +1,6 @@
 package main.LoginReg;
 
-import SQL.Connection_SQL;
+import Util.Connection_SQL;
 import Util.GetCode;
 import Util.MailUtil;
 import Util.ViewBaseServlet;
@@ -17,7 +17,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.Random;
 
 @WebServlet("/verify_code")
 public class email_send extends ViewBaseServlet {

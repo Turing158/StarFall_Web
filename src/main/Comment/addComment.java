@@ -1,6 +1,6 @@
 package main.Comment;
 
-import SQL.Connection_SQL;
+import Util.Connection_SQL;
 import Util.ViewBaseServlet;
 
 import javax.servlet.ServletException;

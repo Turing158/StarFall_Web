@@ -1,6 +1,6 @@
 package main.Comment;
 
-import SQL.Connection_SQL;
+import Util.Connection_SQL;
 import org.thymeleaf.util.StringUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
