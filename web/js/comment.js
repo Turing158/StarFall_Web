@@ -53,3 +53,8 @@ function page(page_num,last_page,only_user){
 function comment_all(){
     window.location.href = "home?page=1";
 }
+function change(){
+    var img = document.getElementById("VerifyCode_img");
+    var date = new Date().getTime();
+    img.src="jpegCode?"+date;
+}

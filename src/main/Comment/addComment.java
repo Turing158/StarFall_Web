@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @WebServlet("/add_comment")
 public class addComment extends ViewBaseServlet {
@@ -29,10 +30,20 @@ public class addComment extends ViewBaseServlet {
         System.out.println(content);
         String date =LocalDate.now()+" "+ldt.getHour()+":"+ldt.getMinute()+":"+ldt.getSecond();
         String user = (String) session.getAttribute("user");
-        try {
-            add(date,content,user);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        String code = req.getParameter("code_comment");
+        String comment = req.getParameter("comment_input");
+        session.setAttribute("comment_input",comment);
+        if(Objects.equals(code,session.getAttribute("code"))){
+            try {
+                add(date,content,user);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            session.setAttribute("comment_tips","发话成功");
+            session.setAttribute("comment_input",null);
+        }
+        else{
+            session.setAttribute("comment_tips","验证码错误");
         }
         resp.sendRedirect("/home");
     }

@@ -170,6 +170,10 @@
                         <textarea name="content" id="" th:onkeyup="|Check(this,10,255);|" th:maxlength="255" th:if="${session.login} == 1"></textarea>
                     </td>
                     <td class="ac_oprate">
+                        <div class="VerifyCode_div">
+                            <input type="text" id="comment_Verifycode" class="VerifyCode" name="comment_VerifyCode">
+                            <img src="jpegCode" id="VerifyCode_img" th:onclick="|change();|">
+                        </div>
                         <input type="button" value="发表感言" class="ac_submit" id="ac_submit">
                         <span class="comment_tips" id="comment_tips"></span>
                     </td>
