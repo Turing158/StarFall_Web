@@ -183,7 +183,7 @@
 }
 .ac_submit{
     position: relative;
-    height: 206px;
+    height: 176px;
     width: 180px;
     background-color: transparent;
     transition: all 250ms;
@@ -239,4 +239,25 @@
     top: -10px;
     left: 158px;
     display:block;
+}
+.VerifyCode_div{
+    position: relative;
+}
+.VerifyCode_div input{
+    position: relative;
+    top: 1px;
+    width: 80px;
+    height: 30px;
+    border: 1px solid rgb(179, 82, 3);
+    border-radius: 5px;
+}
+.VerifyCode_div input:hover{
+    background-color: rgb(255, 244, 221);
+}
+.VerifyCode_div input:focus{
+    background-color: rgb(250, 233, 196);
+}
+.VerifyCode_div img{
+    position: relative;
+    top: -1px;
 }
