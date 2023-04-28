@@ -167,15 +167,15 @@
                     <td class="ac_comment">
                         <div class="ac_comment_top">快发话！！！<span class="ac_comment_top_tips" id="ac_comment_top_tips">0 行 | 0 字数</span></div>
                         <div th:if="${session.login} == null" class="tipsToLogin">请登录，谢谢！</div>
-                        <textarea name="content" id="" th:onkeyup="|Check(this,10,255);|" th:maxlength="255" th:if="${session.login} == 1"></textarea>
+                        <textarea name="content" id="" th:onkeyup="|Check(this,10,255);|" th:maxlength="255" th:if="${session.login} == 1" th:utext="${#strings.replace(session.comment_input,'\n','&lt;br/&gt;')}">a</textarea>
                     </td>
                     <td class="ac_oprate">
                         <div class="VerifyCode_div">
-                            <input type="text" id="comment_Verifycode" class="VerifyCode" name="comment_VerifyCode">
+                            <input type="text" id="comment_Verifycode" class="VerifyCode" name="comment_VerifyCode" th:maxlength="4">
                             <img src="jpegCode" id="VerifyCode_img" th:onclick="|change();|">
                         </div>
                         <input type="button" value="发表感言" class="ac_submit" id="ac_submit">
-                        <span class="comment_tips" id="comment_tips"></span>
+                        <span class="comment_tips" id="comment_tips" th:text="${session.comment_tips}">tips</span>
                     </td>
                 </table>
             </form>

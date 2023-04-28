@@ -27,12 +27,12 @@ public class addComment extends ViewBaseServlet {
         session.setAttribute("home","none");
         req.setCharacterEncoding("utf-8");
         String content = req.getParameter("content");
-        System.out.println(content);
         String date =LocalDate.now()+" "+ldt.getHour()+":"+ldt.getMinute()+":"+ldt.getSecond();
         String user = (String) session.getAttribute("user");
-        String code = req.getParameter("code_comment");
-        String comment = req.getParameter("comment_input");
-        session.setAttribute("comment_input",comment);
+        String code = req.getParameter("comment_VerifyCode");
+        session.setAttribute("comment_input",content);
+        System.out.println(content);
+        System.out.println(session.getAttribute("comment_input"));
         if(Objects.equals(code,session.getAttribute("code"))){
             try {
                 add(date,content,user);
@@ -41,6 +41,7 @@ public class addComment extends ViewBaseServlet {
             }
             session.setAttribute("comment_tips","发话成功");
             session.setAttribute("comment_input",null);
+            session.setAttribute("code",null);
         }
         else{
             session.setAttribute("comment_tips","验证码错误");
