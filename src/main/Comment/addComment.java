@@ -31,8 +31,6 @@ public class addComment extends ViewBaseServlet {
         String user = (String) session.getAttribute("user");
         String code = req.getParameter("comment_VerifyCode");
         session.setAttribute("comment_input",content);
-        System.out.println(content);
-        System.out.println(session.getAttribute("comment_input"));
         if(Objects.equals(code,session.getAttribute("code"))){
             try {
                 add(date,content,user);

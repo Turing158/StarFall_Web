@@ -2,7 +2,11 @@ package To;
 
 import Util.Connection_SQL;
 import Util.ViewBaseServlet;
+import com.starfall.config.sf_config;
+import com.starfall.service.DiscussService;
 import main.Comment.getComment;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.thymeleaf.util.StringUtils;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +24,8 @@ import java.util.Objects;
 public class toHome extends ViewBaseServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ApplicationContext context = new AnnotationConfigApplicationContext(sf_config.class);
+        DiscussService discussService = context.getBean("discussService", DiscussService.class);
         HttpSession session = req.getSession();
         String only_user = req.getParameter("only_user");
         if (Objects.equals(only_user,"null")){
@@ -35,17 +41,12 @@ public class toHome extends ViewBaseServlet {
         }
         session.getAttribute("user");
         session.getAttribute("login");
-        getComment gc = new getComment();
-        Integer last_page = 0;
-        try {
-            last_page = count_page(only_user);
-            session.setAttribute("comment",gc.getcomment(page,only_user));
-            session.setAttribute("last_page",last_page);
-            session.setAttribute("page",page);
-            session.setAttribute("page_center",page+"/"+last_page);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Integer last_page = discussService.getPage(only_user);
+//        last_page = count_page(only_user);
+        session.setAttribute("comment",discussService.getDiscuss(page,only_user));
+        session.setAttribute("last_page",last_page);
+        session.setAttribute("page",page);
+        session.setAttribute("page_center",page+"/"+last_page);
         if(page > last_page){
             session.setAttribute("page",page-1);
         }
@@ -54,23 +55,6 @@ public class toHome extends ViewBaseServlet {
         }
 
         super.processTemplate("index",req,resp);
-    }
-    public int count_page(String only_user) throws SQLException{
-        Connection con = new Connection_SQL().getCon();
-        int count_page = 1;
-        String cmd = "select count(*) from discuss";
-        if (!StringUtils.isEmpty(only_user)){
-            cmd = "select count(*) from discuss where user=\""+only_user+"\"";
-        }
-        PreparedStatement run = con.prepareStatement(cmd);
-        ResultSet result = run.executeQuery(cmd);
-        if (result.next()){
-            count_page = (result.getInt(1) +4)/5;
-        }
-        result.close();
-        run.close();
-        con.close();
-        return count_page;
     }
 
 }

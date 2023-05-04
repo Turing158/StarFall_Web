@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class getComment {
-    public List<Comment> getcomment(int page,String only_user)throws SQLException {
+    public List<Comment> getcomment(int page, String only_user)throws SQLException {
         Connection con = new Connection_SQL().getCon();
         List<Comment> list = new ArrayList<>();
         String cmd = "select * from login_web.discuss limit "+(page-1)*5+",5";

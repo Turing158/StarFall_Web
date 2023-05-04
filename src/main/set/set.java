@@ -2,6 +2,11 @@ package main.set;
 
 import Util.Connection_SQL;
 import Util.ViewBaseServlet;
+import com.starfall.config.sf_config;
+import com.starfall.enity.User;
+import com.starfall.service.UserService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 @WebServlet("/set")
 public class set extends ViewBaseServlet {
-    private String name;
-    private String date;
-    private String introduce;
-    private String email;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ApplicationContext context = new AnnotationConfigApplicationContext(sf_config.class);
+        UserService userService = context.getBean("userService", UserService.class);
         HttpSession session = req.getSession();
         if (session.getAttribute("display_me") == null){
             session.setAttribute("display_me","block");
@@ -29,30 +28,11 @@ public class set extends ViewBaseServlet {
             session.setAttribute("display_p","none");
         }
         String user_session = (String) session.getAttribute("user");
-        try {
-            getMassage(user_session);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        session.setAttribute("name",this.name);
-        session.setAttribute("date",this.date);
-        session.setAttribute("introduce",this.introduce);
-        session.setAttribute("email",this.email);
+        User user = userService.getInfo(user_session);
+        session.setAttribute("name",user.getName());
+        session.setAttribute("date",user.getData());
+        session.setAttribute("introduce",user.getIntroduce());
+        session.setAttribute("email",user.getEmail());
         super.processTemplate("set",req,resp);
-    }
-    public void getMassage(String user) throws SQLException {
-        Connection con = new Connection_SQL().getCon();
-        String cmd = "select * from web_user where user=\""+user+"\"";
-        PreparedStatement run = con.prepareStatement(cmd);
-        ResultSet result = run.executeQuery(cmd);
-        while(result.next()){
-            this.name = result.getString("name");
-            this.date = result.getString("date");
-            this.introduce = result.getString("introduce");
-            this.email = result.getString("email");
-        }
-        result.close();
-        run.close();
-        con.close();
     }
 }

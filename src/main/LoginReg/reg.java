@@ -2,6 +2,10 @@ package main.LoginReg;
 
 import Util.Connection_SQL;
 import Util.ViewBaseServlet;
+import com.starfall.config.sf_config;
+import com.starfall.service.UserService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +22,8 @@ import java.time.LocalDate;
 public class reg extends ViewBaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ApplicationContext context = new AnnotationConfigApplicationContext(sf_config.class);
+        UserService userService = context.getBean("userService", UserService.class);
         HttpSession session = req.getSession();
         session.setAttribute("reg","block");
         String user = (String) session.getAttribute("reg_user");
@@ -41,11 +47,7 @@ public class reg extends ViewBaseServlet {
             }
             String name = "新用户"+ id_last6;
             LocalDate date = LocalDate.now();
-            try {
-                add_user(user,password,name, String.valueOf(date),email);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            userService.reg(user,password,name,String.valueOf(date),email);
             session.setAttribute("reg_notice","block");
             super.processTemplate("reg_emailCode",req,resp);
             session.setAttribute("reg_notice",null);

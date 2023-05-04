@@ -4,7 +4,11 @@ import Util.Connection_SQL;
 import Util.GetCode;
 import Util.MailUtil;
 import Util.ViewBaseServlet;
+import com.starfall.config.sf_config;
+import com.starfall.service.UserService;
 import org.apache.commons.mail.EmailException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +26,8 @@ import java.util.Objects;
 public class email_send extends ViewBaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ApplicationContext context = new AnnotationConfigApplicationContext(sf_config.class);
+        UserService userService = context.getBean("userService", UserService.class);
         HttpSession session = req.getSession();
         GetCode getCode = new GetCode();
         MailUtil mail = new MailUtil();
@@ -36,18 +42,8 @@ public class email_send extends ViewBaseServlet {
         session.setAttribute("reg_email",email);
         session.setAttribute("code_tips",".");
         session.setAttribute("reg_notice",null);
-        boolean user_flag = false;
-        try {
-            user_flag = check_repeat(user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        boolean flag = false;
-        try {
-            flag = !check_repeat_email(email);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        boolean user_flag = userService.checkUserRepeat(user);
+        boolean flag = userService.checkEmailRepeat(email);
         System.out.println(session.getAttribute("enter_flag"));
         if ((boolean) session.getAttribute("enter_flag")){
             email_code = getCode.getcode();
