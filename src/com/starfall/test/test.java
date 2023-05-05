@@ -1,7 +1,6 @@
 package com.starfall.test;
 
 import com.starfall.config.sf_config;
-import com.starfall.enity.User;
 import com.starfall.service.DiscussService;
 import com.starfall.service.UserService;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +17,8 @@ public class test {
 //        System.out.println(user.getUser());
 //        userService.reg("abc","aaa","新","1111-11-11","123@q.com");
 //        System.out.println(userService.checkUserRepeat("aaa"));
-
+//        userService.updateInformation("admin","管理","jieshao");
+        System.out.println(userService.checkOldPassword("admin"));
     }
     @Test
     public void test2(){

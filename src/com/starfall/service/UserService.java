@@ -27,4 +27,10 @@ public class UserService {
     public boolean checkEmailRepeat(String email){
         return userDao.checkEmailRepeat(email);
     }
+    public void updateInformation(String user,String name,String introduce){
+        userDao.updateInformation(user,name,introduce);
+    }
+    public String checkOldPassword(String user) {
+        return userDao.checkOldPassword(user);
+    }
 }

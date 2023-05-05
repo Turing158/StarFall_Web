@@ -9,5 +9,6 @@ public interface UserDao {
     void Reg(String user, String password, String name, String date, String email);
     boolean checkUserRepeat(String user);
     boolean checkEmailRepeat(String email);
-    void updateInformation();
+    void updateInformation(String user,String name,String introduce);
+    String checkOldPassword(String user);
 }

@@ -2,6 +2,10 @@ package main.set;
 
 import Util.Connection_SQL;
 import Util.ViewBaseServlet;
+import com.starfall.config.sf_config;
+import com.starfall.service.UserService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +22,8 @@ import java.util.Objects;
 public class set_information extends ViewBaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ApplicationContext context = new AnnotationConfigApplicationContext(sf_config.class);
+        UserService userService = context.getBean("userService", UserService.class);
         HttpSession session = req.getSession();
         session.setAttribute("display_me","none");
         session.setAttribute("display_p","none");
@@ -35,11 +41,7 @@ public class set_information extends ViewBaseServlet {
         }
         else if ((name != null || introduce != null )&& Objects.equals(code,session.getAttribute("code"))){
             session.setAttribute("i_tips","信息修改成功");
-            try {
-                set(user,name,introduce);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            userService.updateInformation(user,name,introduce);
         }
         session.setAttribute("code",null);
         resp.sendRedirect("/set");

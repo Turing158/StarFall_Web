@@ -56,8 +56,14 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void updateInformation() {
-        String sql = "update web.usesr f";
-        jdbcTemplate.update(sql);
+    public void updateInformation(String user,String name,String introduce) {
+        String sql = "update web.user set name=?, introduce=? where user=?";
+        jdbcTemplate.update(sql,name,introduce,user);
+    }
+
+    @Override
+    public String checkOldPassword(String user) {
+        String sql = "select password from web.user where user=?";
+        return jdbcTemplate.queryForObject(sql,String.class,user);
     }
 }
