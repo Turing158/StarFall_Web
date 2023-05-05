@@ -18,7 +18,8 @@ public class test {
 //        userService.reg("abc","aaa","新","1111-11-11","123@q.com");
 //        System.out.println(userService.checkUserRepeat("aaa"));
 //        userService.updateInformation("admin","管理","jieshao");
-        System.out.println(userService.checkOldPassword("admin"));
+//        System.out.println(userService.checkOldPassword("admin","admin"));
+//        userService.setNewPassword("admin","admin");
     }
     @Test
     public void test2(){

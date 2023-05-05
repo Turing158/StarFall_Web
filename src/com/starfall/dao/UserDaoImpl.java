@@ -66,4 +66,10 @@ public class UserDaoImpl implements UserDao{
         String sql = "select password from web.user where user=?";
         return jdbcTemplate.queryForObject(sql,String.class,user);
     }
+
+    @Override
+    public void setNewPassword(String user, String password) {
+        String sql = "update web.user set password=? where user=?";
+        jdbcTemplate.update(sql,password,user);
+    }
 }

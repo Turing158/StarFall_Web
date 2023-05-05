@@ -30,7 +30,10 @@ public class UserService {
     public void updateInformation(String user,String name,String introduce){
         userDao.updateInformation(user,name,introduce);
     }
-    public String checkOldPassword(String user) {
-        return userDao.checkOldPassword(user);
+    public boolean checkOldPassword(String user,String password) {
+        return userDao.checkOldPassword(user).equals(password);
+    }
+    public void setNewPassword(String user, String password){
+        userDao.setNewPassword(user,password);
     }
 }

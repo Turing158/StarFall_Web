@@ -2,6 +2,10 @@ package main.set;
 
 import Util.Connection_SQL;
 import Util.ViewBaseServlet;
+import com.starfall.config.sf_config;
+import com.starfall.service.UserService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +23,8 @@ import java.util.Objects;
 public class set_password extends ViewBaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ApplicationContext context = new AnnotationConfigApplicationContext(sf_config.class);
+        UserService userService = context.getBean("userService", UserService.class);
         HttpSession session = req.getSession();
         req.setCharacterEncoding("utf-8");
         String user = (String) session.getAttribute("user");
@@ -28,21 +34,11 @@ public class set_password extends ViewBaseServlet {
         session.setAttribute("display_me","none");
         session.setAttribute("display_p","block");
         session.setAttribute("display_i","none");
-        boolean flag = false;
-        try {
-            flag = check(user,old_password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println(session.getAttribute("code"));
+        boolean flag = userService.checkOldPassword(user,old_password);
         if(flag && Objects.equals(code,session.getAttribute("code"))){
             session.setAttribute("p_tips","密码修改成功");
             session.setAttribute("p_tips_color","lightgreen");
-            try {
-                set(user,new_password);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            userService.setNewPassword(user,new_password);
             session.setAttribute("code",null);
         }
         else if(!Objects.equals(code,session.getAttribute("code"))){
@@ -55,27 +51,27 @@ public class set_password extends ViewBaseServlet {
         }
         resp.sendRedirect("/set");
     }
-    public boolean check(String user,String password) throws SQLException {
-        Connection con = new Connection_SQL().getCon();
-        String cmd = "select password from login_web.web_user where user=\""+user+"\"";
-        boolean flag = false;
-        PreparedStatement run = con.prepareStatement(cmd);
-        ResultSet result = run.executeQuery(cmd);
-        while(result.next()){
-            flag = Objects.equals(password,result.getString("password"));
-        }
-        result.close();
-        run.close();
-        con.close();
-        return flag;
-    }
-    public void set(String user,String password)throws SQLException{
-        Connection con = new Connection_SQL().getCon();
-        String cmd = "update login_web.web_user set password=\""+password+"\" where user=\""+user+"\"";
-        PreparedStatement run = con.prepareStatement(cmd);
-        run.executeUpdate();
-        run.close();
-        con.close();
-    }
+//    public boolean check(String user,String password) throws SQLException {
+//        Connection con = new Connection_SQL().getCon();
+//        String cmd = "select password from login_web.web_user where user=\""+user+"\"";
+//        boolean flag = false;
+//        PreparedStatement run = con.prepareStatement(cmd);
+//        ResultSet result = run.executeQuery(cmd);
+//        while(result.next()){
+//            flag = Objects.equals(password,result.getString("password"));
+//        }
+//        result.close();
+//        run.close();
+//        con.close();
+//        return flag;
+//    }
+//    public void set(String user,String password)throws SQLException{
+//        Connection con = new Connection_SQL().getCon();
+//        String cmd = "update login_web.web_user set password=\""+password+"\" where user=\""+user+"\"";
+//        PreparedStatement run = con.prepareStatement(cmd);
+//        run.executeUpdate();
+//        run.close();
+//        con.close();
+//    }
 
 }

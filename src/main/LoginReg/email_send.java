@@ -112,23 +112,23 @@ public class email_send extends ViewBaseServlet {
         session.setAttribute("code",null);
     }
 
-    public boolean check_repeat(String user)throws SQLException {
-        Connection con = new Connection_SQL().getCon();
-        String cmd = "select user from login_web.web_user where user=\""+user+"\"";
-        boolean flag = true;
-        PreparedStatement run = con.prepareStatement(cmd);
-        ResultSet result = run.executeQuery(cmd);
-        while(result.next()){
-            flag = false;
-        }
-        return flag;
-    }
-
-    public boolean check_repeat_email(String email)throws SQLException {
-        Connection con = new Connection_SQL().getCon();
-        String cmd = "select email from login_web.web_user where email=\""+email+"\"";
-        PreparedStatement run = con.prepareStatement(cmd);
-        ResultSet result = run.executeQuery(cmd);
-        return result.next();
-    }
+//    public boolean check_repeat(String user)throws SQLException {
+//        Connection con = new Connection_SQL().getCon();
+//        String cmd = "select user from login_web.web_user where user=\""+user+"\"";
+//        boolean flag = true;
+//        PreparedStatement run = con.prepareStatement(cmd);
+//        ResultSet result = run.executeQuery(cmd);
+//        while(result.next()){
+//            flag = false;
+//        }
+//        return flag;
+//    }
+//
+//    public boolean check_repeat_email(String email)throws SQLException {
+//        Connection con = new Connection_SQL().getCon();
+//        String cmd = "select email from login_web.web_user where email=\""+email+"\"";
+//        PreparedStatement run = con.prepareStatement(cmd);
+//        ResultSet result = run.executeQuery(cmd);
+//        return result.next();
+//    }
 }

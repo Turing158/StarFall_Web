@@ -59,12 +59,12 @@ public class reg extends ViewBaseServlet {
         }
     }
 
-    public void add_user(String user, String password, String name, String date, String email)throws SQLException{
-        Connection con = new Connection_SQL().getCon();
-        String cmd = "insert into login_web.web_user (user,password,name,date,level,email) values ('"+user+"','"+password+"','"+name+"','"+date+"',1,'"+email+"')";
-        PreparedStatement run = con.prepareStatement(cmd);
-        run.executeUpdate();
-        run.close();
-        con.close();
-    }
+//    public void add_user(String user, String password, String name, String date, String email)throws SQLException{
+//        Connection con = new Connection_SQL().getCon();
+//        String cmd = "insert into login_web.web_user (user,password,name,date,level,email) values ('"+user+"','"+password+"','"+name+"','"+date+"',1,'"+email+"')";
+//        PreparedStatement run = con.prepareStatement(cmd);
+//        run.executeUpdate();
+//        run.close();
+//        con.close();
+//    }
 }

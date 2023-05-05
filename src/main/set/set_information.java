@@ -46,12 +46,12 @@ public class set_information extends ViewBaseServlet {
         session.setAttribute("code",null);
         resp.sendRedirect("/set");
     }
-    public void set(String user,String name,String introduce) throws SQLException {
-        Connection con = new Connection_SQL().getCon();
-        String cmd = "update login_web.web_user set name=\""+name+"\",introduce=\""+introduce+"\" where user=\""+user+"\"";
-        PreparedStatement run = con.prepareStatement(cmd);
-        run.executeUpdate(cmd);
-        run.close();
-        con.close();
-    }
+//    public void set(String user,String name,String introduce) throws SQLException {
+//        Connection con = new Connection_SQL().getCon();
+//        String cmd = "update login_web.web_user set name=\""+name+"\",introduce=\""+introduce+"\" where user=\""+user+"\"";
+//        PreparedStatement run = con.prepareStatement(cmd);
+//        run.executeUpdate(cmd);
+//        run.close();
+//        con.close();
+//    }
 }
