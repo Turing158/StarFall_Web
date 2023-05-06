@@ -5,8 +5,8 @@
     top: 20px;
     width: 1680px;
     height: 880px;
-    background-color: rgb(5, 69, 85);
-    display:block;
+    background-color: rgb(50, 65, 70);
+    display:none;
 }
 .home_top{
     position: relative;

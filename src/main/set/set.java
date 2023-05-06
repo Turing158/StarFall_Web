@@ -33,6 +33,7 @@ public class set extends ViewBaseServlet {
         session.setAttribute("date",user.getData());
         session.setAttribute("introduce",user.getIntroduce());
         session.setAttribute("email",user.getEmail());
+        session.setAttribute("level",user.getLevel());
         super.processTemplate("set",req,resp);
     }
 }

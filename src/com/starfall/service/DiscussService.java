@@ -15,6 +15,9 @@ public class DiscussService {
         return discussDao.getDiscuss((page-1)*5,user);
     }
     public int getPage(String user){
-        return discussDao.getPage(user);
+        return (discussDao.getPage(user)+4)/5;
+    }
+    public void addComment(String user, String content, String date,String name){
+        discussDao.addComment(user,content,date,name);
     }
 }

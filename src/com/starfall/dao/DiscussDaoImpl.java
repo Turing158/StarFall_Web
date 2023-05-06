@@ -32,4 +32,10 @@ public class DiscussDaoImpl implements DiscussDao{
         }
         return jdbcTemplate.queryForObject(sql,Integer.class,user);
     }
+
+    @Override
+    public void addComment(String user, String content, String date,String name) {
+        String sql = "insert into web.discuss (user,content,date,name) values(?,?,?,?)";
+        jdbcTemplate.update(sql,user,content,date,name);
+    }
 }

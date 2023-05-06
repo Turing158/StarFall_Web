@@ -26,6 +26,8 @@ public class test {
         ApplicationContext context = new AnnotationConfigApplicationContext(sf_config.class);
         DiscussService discussService = context.getBean("discussService", DiscussService.class);
 //        System.out.println(discussService.getDiscuss(1, null));
-        System.out.println(discussService.getPage("admin"));
+//        System.out.println(discussService.getPage("admin"));
+        discussService.addComment("admin","tesxtbean","1111111111","管");
     }
+
 }

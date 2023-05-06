@@ -36,4 +36,5 @@ public class UserService {
     public void setNewPassword(String user, String password){
         userDao.setNewPassword(user,password);
     }
+
 }
