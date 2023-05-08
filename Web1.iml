@@ -29,14 +29,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="tomcat-api" level="project" />
-    <orderEntry type="library" name="servlet-api" level="project" />
-    <orderEntry type="library" name="thymeleaf_lib" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-8.0.28" level="project" />
     <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="mail" level="project" />
-    <orderEntry type="library" name="commons-email-1.5" level="project" />
-    <orderEntry type="library" name="javax.mail" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -95,15 +88,6 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/druid-1.1.9.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/javax.mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -212,6 +196,43 @@
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/commons-email-1.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/servlet-api.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/tomcat-api.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/lib/thymeleaf_lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/lib/thymeleaf_lib" recursive="false" />
       </library>
     </orderEntry>
   </component>

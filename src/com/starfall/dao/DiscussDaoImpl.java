@@ -15,7 +15,7 @@ public class DiscussDaoImpl implements DiscussDao{
     JdbcTemplate jdbcTemplate;
     @Override
     public List<Discuss> getDiscuss(int page,String user) {
-        String sql = "select * from web.discuss where user=? limit (?-1)*5,5";
+        String sql = "select * from web.discuss where user=? limit ?,5";
         if(StringUtils.isEmpty(user)){
             sql = "select * from web.discuss limit ?,5";
             return jdbcTemplate.query(sql,new BeanPropertyRowMapper<Discuss>(Discuss.class),page);

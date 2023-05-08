@@ -1,4 +1,4 @@
-.home{
+.information{
     position: absolute;
     float: left;
     left: 220px;
@@ -6,9 +6,9 @@
     width: 1680px;
     height: 880px;
     background-color: rgb(50, 65, 70);
-    display:none;
+    display:block;
 }
-.home_top{
+.information_top{
     position: relative;
     height: 100px;
     border-bottom: 3px solid rgb(1, 29, 66);
@@ -20,4 +20,10 @@
     margin: 0px 10px;
     font-size: 15px;
     
+}
+.user_admin{
+    position: relative;
+    top: 20px;
+    left: 100px;
+    border: 2px solid black;
 }

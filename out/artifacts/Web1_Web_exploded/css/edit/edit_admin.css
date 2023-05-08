@@ -35,7 +35,11 @@ li a{
     border-right: 7px solid rgb(5, 5, 5);
     transition: all 250ms;
 }
-li a:hover{
+li a:hover:not(.active){
     background-color: rgb(59, 106, 160);
     border-right: 7px solid rgb(211, 211, 211);
+}
+.active{
+    background-color: rgb(59, 106, 160);
+    border-right: 7px solid rgb(146, 224, 255);
 }

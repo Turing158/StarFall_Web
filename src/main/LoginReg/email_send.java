@@ -1,6 +1,5 @@
 package main.LoginReg;
 
-import Util.Connection_SQL;
 import Util.GetCode;
 import Util.MailUtil;
 import Util.ViewBaseServlet;
@@ -16,10 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Objects;
 
 @WebServlet("/verify_code")
